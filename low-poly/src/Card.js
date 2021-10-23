@@ -1,7 +1,7 @@
-const Card = ({ children }) => {
+const Card = ({ children, backgroundClass = "bg-white" }) => {
   return ( 
-    <div className="flex-auto justify-center bg-white rounded overflow-hidden shadow-lg">
-      <div className="w-full px-6 py-4">
+    <div className={`flex-auto justify-cente rounded overflow-hidden shadow-lg ${backgroundClass}`}>
+      <div className="w-full p-4">
         {children}
       </div>
     </div>
