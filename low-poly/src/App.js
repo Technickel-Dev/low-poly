@@ -8,7 +8,7 @@ function App() {
       <TopNav />
       <div className="flex">
         <ControlPanel />
-        <SVGPreview backgroundFill="#123456" />
+        <SVGPreview />
       </div>
     </div>
   );
