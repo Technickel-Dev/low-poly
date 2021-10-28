@@ -6,6 +6,7 @@ const store = (set) => ({
   lineColor: '#000000',
   backgroundColor: '#FFFFFF',
   strokeWidth: 5,
+  fileURL: null,
   setLineColor: (lineColor) => set(produce(state => {
     state.lineColor = lineColor
   })),
@@ -14,7 +15,10 @@ const store = (set) => ({
   })),
   setStrokeWidth: (strokeWidth) => set(produce(state => {
     state.strokeWidth = strokeWidth
-  }))
+  })),
+  setFileURL: (fileURL) => set(produce(state => {
+    state.fileURL = fileURL
+  })),
 });
 
 const useHexagonStore = create(devtools(store));

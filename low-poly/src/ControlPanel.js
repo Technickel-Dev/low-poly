@@ -1,9 +1,12 @@
+import { useOpenCv } from "opencv-react"
 import { useForm } from "react-hook-form";
 import Card from "./Card"
-import NumberInput from "./NumberInput"
+import useTest from "./HexagonOpenCV"
+import InputNumber from "./InputNumber"
+import InputText from "./InputText"
+import Loading from "./Loading"
 import useHexagonStore from "./store/useHexagonStore"
 import SubmitButton from "./SubmitButton"
-import TextInput from "./TextInput"
 
 const App = () => {
   const { handleSubmit, register } = useForm();
@@ -14,6 +17,9 @@ const App = () => {
   const setBackgroundColor = useHexagonStore(state => state.setBackgroundColor)
   const strokeWidth = useHexagonStore(state => state.strokeWidth)
   const setStrokeWidth = useHexagonStore(state => state.setStrokeWidth)
+  const setFileURL = useHexagonStore(state => state.setFileURL)
+  const { loaded: isOpenCVLoaded } = useOpenCv()
+  const test = useTest()
 
   const onSubmit = (data) => {
     setLineColor(data["line-color"])
@@ -21,19 +27,27 @@ const App = () => {
     setStrokeWidth(parseInt(data["stroke-width"]))
   }
 
+  const onFileChange = (e) => {
+    setFileURL(URL.createObjectURL(e.target.files[0]))
+  }
+
   return (
-    <div className="flex-1 m-4">
+    <div className="flex-1 mr-4">
       <Card>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="w-full mb-4">
-            <TextInput label="Line Color" id="line-color" defaultValue={lineColor} register={register} />
-            <TextInput label="Background Color" id="background-color" defaultValue={backgroundColor} register={register} />
-            <NumberInput label="Stroke Width" id="stroke-width" defaultValue={strokeWidth} register={register} />
-          </div>
-          <div className="flex justify-center mt-2">
-            <SubmitButton />
-          </div>
-        </form>
+        {isOpenCVLoaded ?
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="w-full mb-4">
+              <input type="file" id="file-input" className="mb-4" name="file" onChange={onFileChange} />
+              <InputText label="Line Color" id="line-color" defaultValue={lineColor} register={register} />
+              <InputText label="Background Color" id="background-color" defaultValue={backgroundColor} register={register} />
+              <InputNumber label="Stroke Width" id="stroke-width" defaultValue={strokeWidth} register={register} />
+            </div>
+            <div className="flex justify-center mt-2">
+              <SubmitButton />
+            </div>
+          </form> :
+          <Loading />
+        }
       </Card>
     </div>
   );
