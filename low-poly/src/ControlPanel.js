@@ -1,7 +1,6 @@
 import { useOpenCv } from "opencv-react"
 import { useForm } from "react-hook-form";
 import Card from "./Card"
-import useTest from "./HexagonOpenCV"
 import InputNumber from "./InputNumber"
 import InputText from "./InputText"
 import Loading from "./Loading"
@@ -19,7 +18,6 @@ const App = () => {
   const setStrokeWidth = useHexagonStore(state => state.setStrokeWidth)
   const setFileURL = useHexagonStore(state => state.setFileURL)
   const { loaded: isOpenCVLoaded } = useOpenCv()
-  const test = useTest()
 
   const onSubmit = (data) => {
     setLineColor(data["line-color"])
@@ -27,8 +25,21 @@ const App = () => {
     setStrokeWidth(parseInt(data["stroke-width"]))
   }
 
+  // const uploadImage = async (image) => {
+  //   const data = new FormData()
+  //   data.append('image', image)
+
+  //   await fetch('http://localhost:5000/', {
+  //     method: 'POST',
+  //     body: data
+  //   }).then(data => {
+  //     console.log(data)
+  //   })
+  // }
+
   const onFileChange = (e) => {
     setFileURL(URL.createObjectURL(e.target.files[0]))
+    // uploadImage(e.target.files[0])
   }
 
   return (

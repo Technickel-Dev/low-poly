@@ -7,7 +7,7 @@ import OpenCVPreview from './OpenCVPreview'
 const App = () => {
 
   return (
-    <OpenCvProvider openCvPath='/opencv/opencv.js'>
+    <OpenCvProvider>
       <div className="h-screen bg-yellow-500">
         <TopNav />
         <div className="flex my-4 mx-4">
