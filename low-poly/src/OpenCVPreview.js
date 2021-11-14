@@ -11,10 +11,9 @@ const OpenCVPreview = () => {
   return (
     <Card>
       <div className="flex justify-center">
-        {/* { fileURL && <img id="image" style={{maxHeight: 350, maxWidth: 350}} src={fileURL} alt="Uploaded file"/> } */}
         { fileURL && <DrawableCanvas id={"canvas-input"} width={350} height={350} /> }
         <canvas id="canvas-output" width="350" height="350"/>
-        {/* <button onClick={() => { processImageHexagon(cv, 'image', 'canvas-output') }}>CLICK</button> */}
+        <button onClick={() => { processImageHexagon(cv, 'canvas-input', 'canvas-output') }}>CLICK</button>
       </div>
     </Card>
   );
