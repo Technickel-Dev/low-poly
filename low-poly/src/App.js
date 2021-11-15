@@ -8,7 +8,7 @@ const App = () => {
 
   return (
     <OpenCvProvider>
-      <div className="h-screen bg-yellow-500">
+      <div className="bg-yellow-500">
         <TopNav />
         <div className="flex my-4 mx-4">
           <ControlPanel />

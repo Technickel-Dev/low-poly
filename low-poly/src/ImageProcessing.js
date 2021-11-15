@@ -1,41 +1,23 @@
-export const processImageHexagon = async (cv, input, output) => {
+export const removeBackground = async (cv, input, drawLayer, output) => {
   if (!cv) return;
 
-  let mask = new cv.Mat();
   let bgdModel = new cv.Mat();
   let fgdModel = new cv.Mat();
+
+  let touchUpMask = cv.imread(drawLayer, 0);
+  let mask = new cv.Mat(touchUpMask.rows, touchUpMask.cols, touchUpMask.type());
 
   const src = cv.imread(input);
   cv.cvtColor(src, src, cv.COLOR_RGBA2RGB, 0);
 
-  let rect = new cv.Rect(55, 5, 285, 235);
+  let rect = new cv.Rect(0, 0, src.cols - 1, src.rows - 1);
   cv.grabCut(src, mask, rect, bgdModel, fgdModel, 4, cv.GC_INIT_WITH_RECT);
 
-  applyMask(cv, src, mask);
+  applyTouchUpMask(cv, mask, touchUpMask);
 
-  // cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY)
-  // cv.threshold(src, src, 5, 255, cv.THRESH_BINARY);
-  
+  cv.grabCut(src, mask, rect, bgdModel, fgdModel, 5, cv.GC_INIT_WITH_MASK);
 
-  // const contours = new cv.MatVector();
-  // const hierarchy = new cv.Mat();
-  // cv.findContours(src, contours, hierarchy, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE);
-
-  // let maxContourArea = 0
-  // let maxContourIndex = 0
-  // console.log(contours.max)
-  // console.log(contours);
-  // contours.forEach((contour, i) => {
-  //   const area = cv.contourArea(contour)
-  //   if (area > maxContourArea) {
-  //     maxContourArea = area;
-  //     maxContourIndex = i;
-  //   }
-  // })
-  
-  // let color = new cv.Scalar(0, 255, 0, 255);
-
-  // cv.drawContours(src, contours, maxContourIndex, color, 1, cv.LINE_8, hierarchy, 100);
+  drawMask(cv, src, mask);
 
   let limeColor = new cv.Scalar(0, 255, 0);
   let startPoint = new cv.Point(rect.x, rect.y);
@@ -44,12 +26,45 @@ export const processImageHexagon = async (cv, input, output) => {
 
   cv.imshow(output, src);
 
-  src.delete(); mask.delete(); bgdModel.delete(); fgdModel.delete();
-  // hierarchy.delete();
-  // contours.delete();
+  src.delete(); touchUpMask.delete(); mask.delete(); bgdModel.delete(); fgdModel.delete();
 }
 
-const applyMask = (cv, src, mask) => {
+export const hexagonify = async (cv, input, thresh, output) => {
+  if (!cv) return;
+
+  const src = cv.imread(input);
+  const srcCopy = cv.imread(input);
+  const contours = new cv.MatVector();
+  const hierarchy = new cv.Mat();
+
+  cv.cvtColor(srcCopy, srcCopy, cv.COLOR_RGBA2GRAY)
+  cv.threshold(srcCopy, srcCopy, 5, 255, cv.THRESH_BINARY);
+
+  let kernal = new cv.Size(3, 3);
+  cv.GaussianBlur(srcCopy, srcCopy, kernal, 0, 0, cv.BORDER_DEFAULT);
+
+  cv.imshow(thresh, srcCopy);
+
+  let maxContourIndex = 0
+  let maxContourArea = 0
+  let contourColor = new cv.Scalar(0, 255, 0, 255);
+
+  cv.findContours(srcCopy, contours, hierarchy, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE);
+  for (let i = 0; i < contours.length; i++) {
+    let area = cv.contourArea(contours[i], false);
+    if (area > maxContourArea) {
+      maxContourArea = area
+      maxContourIndex = i
+    }
+  }
+  cv.drawContours(src, contours, maxContourIndex, contourColor, 1, cv.LINE_8, hierarchy, 0);
+
+  cv.imshow(output, src);
+
+  src.delete(); srcCopy.delete(); contours.delete(); hierarchy.delete();
+}
+
+const drawMask = (cv, src, mask) => {
   // Apply mask to image
   for (let i = 0; i < src.rows; i++) {
     for (let j = 0; j < src.cols; j++) {
@@ -61,3 +76,24 @@ const applyMask = (cv, src, mask) => {
     }
   }
 }
+
+const applyTouchUpMask = (cv, mask, touchUpMask) => {
+  for (let i = 0; i < touchUpMask.rows; i++) {
+    for (let j = 0; j < touchUpMask.cols; j++) {
+      // If the color is green, it's foreground
+      if (touchUpMask.ucharPtr(i, j)[1] === 128) {
+        mask.ucharPtr(i, j)[0] = cv.GC_FGD;
+        mask.ucharPtr(i, j)[1] = cv.GC_FGD;
+        mask.ucharPtr(i, j)[2] = cv.GC_FGD;
+      }
+
+      // If the color is red, it's background
+      if (touchUpMask.ucharPtr(i, j)[0] === 255) {
+        mask.ucharPtr(i, j)[0] = cv.GC_BGD;
+        mask.ucharPtr(i, j)[1] = cv.GC_BGD;
+        mask.ucharPtr(i, j)[2] = cv.GC_BGD;
+      }
+    }
+  }
+}
+
