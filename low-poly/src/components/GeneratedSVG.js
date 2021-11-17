@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import useHexagonStore from './store/useHexagonStore'
 
 const GeneratedSVG = () => {
@@ -5,6 +6,14 @@ const GeneratedSVG = () => {
   const lineColor = useHexagonStore(state => state.lineColor)
   const strokeWidth = useHexagonStore(state => state.strokeWidth)
   const dataPath = useHexagonStore(state => state.dataPath)
+
+  const path = useRef();
+
+  useEffect(() => {    
+    if(dataPath) {
+      path.current.setAttribute('d', `M${dataPath}Z`);
+    }
+  }, [dataPath])
 
   return ( 
     <svg width="350" height="350" viewBox="0 0 350 350" xmlns="http://www.w3.org/2000/svg">
@@ -15,7 +24,7 @@ const GeneratedSVG = () => {
       </defs>
 
       <rect x="0" y="0" width="350" height="350" fill={backgroundColor} />
-      <path stroke={lineColor} strokeLinejoin="round" strokeWidth={strokeWidth} fill="url(#hexagon_pattern)" d={`M${dataPath}Z`}/>
+      <path ref={path} stroke={lineColor} strokeLinejoin="round" strokeWidth={strokeWidth} fill="url(#hexagon_pattern)" />
     </svg>
   );
 }

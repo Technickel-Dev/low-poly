@@ -4,11 +4,9 @@ import GeneratedSVG from './GeneratedSVG'
 const SVGPreview = () => {
 
   return (
-    <div className="mr-4">
-      <Card>
-        <GeneratedSVG />
-      </Card>
-    </div>
+    <Card>
+      <GeneratedSVG />
+    </Card>
   );
 }
  

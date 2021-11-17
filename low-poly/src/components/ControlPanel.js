@@ -25,34 +25,19 @@ const App = () => {
     setStrokeWidth(parseInt(data["stroke-width"]))
   }
 
-  // const uploadImage = async (image) => {
-  //   const data = new FormData()
-  //   data.append('image', image)
-
-  //   await fetch('http://localhost:5000/', {
-  //     method: 'POST',
-  //     body: data
-  //   }).then(data => {
-  //     console.log(data)
-  //   })
-  // }
-
   const onFileChange = (e) => {
     setFileURL(URL.createObjectURL(e.target.files[0]))
-    // uploadImage(e.target.files[0])
   }
 
   return (
-    <div className="flex-1 mr-4">
+    <div className="col-span-2">
       <Card>
         {isOpenCVLoaded ?
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="w-full mb-4">
+          <form className="flex-grow flex flex-col w-100" onSubmit={handleSubmit(onSubmit)}>
               <input type="file" id="file-input" className="mb-4" name="file" onChange={onFileChange} />
               <InputText label="Line Color" id="line-color" defaultValue={lineColor} register={register} />
               <InputText label="Background Color" id="background-color" defaultValue={backgroundColor} register={register} />
               <InputNumber label="Stroke Width" id="stroke-width" defaultValue={strokeWidth} register={register} />
-            </div>
             <div className="flex justify-center mt-2">
               <SubmitButton />
             </div>

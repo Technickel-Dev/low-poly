@@ -1,4 +1,4 @@
-export const removeBackground = async (cv, input, drawLayer, output) => {
+export const removeBackground = async (cv, input, drawLayer, output, callback) => {
   if (!cv) return;
 
   let bgdModel = new cv.Mat();
@@ -10,23 +10,21 @@ export const removeBackground = async (cv, input, drawLayer, output) => {
   const src = cv.imread(input);
   cv.cvtColor(src, src, cv.COLOR_RGBA2RGB, 0);
 
+  // Have grabcut make its prediction
   let rect = new cv.Rect(0, 0, src.cols - 1, src.rows - 1);
   cv.grabCut(src, mask, rect, bgdModel, fgdModel, 4, cv.GC_INIT_WITH_RECT);
 
+  // Apply manual touch ups
   applyTouchUpMask(cv, mask, touchUpMask);
-
   cv.grabCut(src, mask, rect, bgdModel, fgdModel, 5, cv.GC_INIT_WITH_MASK);
 
+  // Apply the resulting mask to the image and display it
   drawMask(cv, src, mask);
-
-  let limeColor = new cv.Scalar(0, 255, 0);
-  let startPoint = new cv.Point(rect.x, rect.y);
-  let endPoint = new cv.Point(rect.width, rect.height);
-  cv.rectangle(src, startPoint, endPoint, limeColor)
-
   cv.imshow(output, src);
 
   src.delete(); touchUpMask.delete(); mask.delete(); bgdModel.delete(); fgdModel.delete();
+
+  await callback()
 }
 
 export const hexagonify = async (cv, input, thresh, output) => {
@@ -50,18 +48,30 @@ export const hexagonify = async (cv, input, thresh, output) => {
   let contourColor = new cv.Scalar(0, 255, 0, 255);
 
   cv.findContours(srcCopy, contours, hierarchy, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE);
-  for (let i = 0; i < contours.length; i++) {
-    let area = cv.contourArea(contours[i], false);
+  for (let i = 0; i < contours.size(); i++) {
+    let area = cv.contourArea(contours.get(i), false);
     if (area > maxContourArea) {
       maxContourArea = area
       maxContourIndex = i
     }
   }
-  cv.drawContours(src, contours, maxContourIndex, contourColor, 1, cv.LINE_8, hierarchy, 0);
 
+  cv.drawContours(src, contours, maxContourIndex, contourColor, 1, cv.LINE_8, hierarchy, 0);
   cv.imshow(output, src);
 
+  let maxContour = contours.get(maxContourIndex)
+  let dataPath = ""
+  for (let i = 0; i < maxContour.data32S.length; i += 2){
+    let x = maxContour.data32S[i]
+    let y = maxContour.data32S[i + 1]
+
+    // Build the data path for the SVG
+    dataPath += `${x} ${y} `
+  }
+
   src.delete(); srcCopy.delete(); contours.delete(); hierarchy.delete();
+
+  return dataPath
 }
 
 const drawMask = (cv, src, mask) => {

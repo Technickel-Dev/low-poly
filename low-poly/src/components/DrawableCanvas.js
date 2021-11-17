@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import useHexagonStore from "./store/useHexagonStore"
 
-const DrawableCanvas = ({ id, width, height }) => {
+const DrawableCanvas = ({ id, width, height, drawCallback }) => {
   const canvas = useRef();
   const drawLayerCanvas = useRef();
   const fileURL = useHexagonStore(state => state.fileURL)
@@ -51,11 +51,11 @@ const DrawableCanvas = ({ id, width, height }) => {
 
   const handleMouseUp = (e) => {
     setIsDrawing(false)
+    drawCallback()
   }
 
   const handleClear = () => {
     const context = drawLayerCanvas.current.getContext('2d');
-    console.log();
     context.clearRect(0, 0, drawLayerCanvas.current.width, drawLayerCanvas.current.height);
   }
 
@@ -75,9 +75,10 @@ const DrawableCanvas = ({ id, width, height }) => {
 
       img.onload = (e) => {
         scaleToFit(canvas.current, e.target)
+        drawCallback()
       }
     }
-  }, [fileURL]);
+  }, [fileURL, drawCallback]);
 
   // Stack two canvases on each other to be able to display the image on one and draw on the other
   // https://stackoverflow.com/questions/20915484/stacking-multiple-canvases-in-html5/20918871#20918871
