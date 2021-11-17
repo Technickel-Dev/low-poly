@@ -1,5 +1,5 @@
 import Card from './Card'
-import useHexagonStore from './store/useHexagonStore'
+import useHexagonStore from '../store/useHexagonStore'
 import { useOpenCv } from 'opencv-react'
 import { hexagonify, removeBackground } from './ImageProcessing'
 import DrawableCanvas from './DrawableCanvas'

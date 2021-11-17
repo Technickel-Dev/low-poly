@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import useHexagonStore from "./store/useHexagonStore"
+import useHexagonStore from "../store/useHexagonStore"
 
 const DrawableCanvas = ({ id, width, height, drawCallback }) => {
   const canvas = useRef();

@@ -1,8 +1,8 @@
 import ControlPanel from './ControlPanel';
-import SVGPreview from '../SVGPreview'
-import TopNav from '../TopNav'
+import SVGPreview from './SVGPreview'
+import TopNav from './TopNav'
 import { OpenCvProvider } from 'opencv-react'
-import OpenCVPreview from '../OpenCVPreview'
+import OpenCVPreview from './OpenCVPreview'
 
 const App = () => {
 

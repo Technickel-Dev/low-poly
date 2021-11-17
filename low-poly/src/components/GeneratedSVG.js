@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import useHexagonStore from './store/useHexagonStore'
+import useHexagonStore from '../store/useHexagonStore'
 
 const GeneratedSVG = () => {
   const backgroundColor = useHexagonStore(state => state.backgroundColor)

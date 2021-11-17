@@ -4,7 +4,7 @@ import Card from "./Card"
 import InputNumber from "./InputNumber"
 import InputText from "./InputText"
 import Loading from "./Loading"
-import useHexagonStore from "./store/useHexagonStore"
+import useHexagonStore from "../store/useHexagonStore"
 import SubmitButton from "./SubmitButton"
 
 const App = () => {
