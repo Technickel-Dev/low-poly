@@ -2,9 +2,7 @@ import { useEffect, useRef } from 'react'
 import useHexagonStore from '../store/useHexagonStore'
 
 const GeneratedSVG = () => {
-  const backgroundColor = useHexagonStore(state => state.backgroundColor)
-  const lineColor = useHexagonStore(state => state.lineColor)
-  const strokeWidth = useHexagonStore(state => state.strokeWidth)
+  const { lineColor, backgroundColor, strokeWidth }  = useHexagonStore(state => state.controlData)
   const dataPath = useHexagonStore(state => state.dataPath)
 
   const path = useRef();

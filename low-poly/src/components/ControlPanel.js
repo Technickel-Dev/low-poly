@@ -10,19 +10,20 @@ import SubmitButton from "./SubmitButton"
 const App = () => {
   const { handleSubmit, register } = useForm();
 
-  const lineColor = useHexagonStore(state => state.lineColor)
-  const setLineColor = useHexagonStore(state => state.setLineColor)
-  const backgroundColor = useHexagonStore(state => state.backgroundColor)
-  const setBackgroundColor = useHexagonStore(state => state.setBackgroundColor)
-  const strokeWidth = useHexagonStore(state => state.strokeWidth)
-  const setStrokeWidth = useHexagonStore(state => state.setStrokeWidth)
+  const {lineColor, backgroundColor, strokeWidth} = useHexagonStore(state => state.controlData)
+  const setControlData = useHexagonStore(state => state.setControlData)
   const setFileURL = useHexagonStore(state => state.setFileURL)
   const { loaded: isOpenCVLoaded } = useOpenCv()
 
   const onSubmit = (data) => {
-    setLineColor(data["line-color"])
-    setBackgroundColor(data["background-color"])
-    setStrokeWidth(parseInt(data["stroke-width"]))
+    let integerFields = ["strokeWidth"]
+
+    // Store integer fields as integers rather than strings
+    integerFields.forEach((field) => {
+      data[field] = parseInt(data[field])
+    })
+    
+    setControlData(data)
   }
 
   const onFileChange = (e) => {
@@ -35,9 +36,9 @@ const App = () => {
         {isOpenCVLoaded ?
           <form className="flex-grow flex flex-col w-100" onSubmit={handleSubmit(onSubmit)}>
               <input type="file" id="file-input" className="mb-4" name="file" onChange={onFileChange} />
-              <InputText label="Line Color" id="line-color" defaultValue={lineColor} register={register} />
-              <InputText label="Background Color" id="background-color" defaultValue={backgroundColor} register={register} />
-              <InputNumber label="Stroke Width" id="stroke-width" defaultValue={strokeWidth} register={register} />
+              <InputText label="Line Color" id="lineColor" defaultValue={lineColor} register={register} />
+              <InputText label="Background Color" id="backgroundColor" defaultValue={backgroundColor} register={register} />
+              <InputNumber label="Stroke Width" id="strokeWidth" defaultValue={strokeWidth} register={register} />
             <div className="flex justify-center mt-2">
               <SubmitButton />
             </div>
