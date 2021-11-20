@@ -83,13 +83,13 @@ const DrawableCanvas = ({ id, width, height, drawCallback }) => {
   // Stack two canvases on each other to be able to display the image on one and draw on the other
   // https://stackoverflow.com/questions/20915484/stacking-multiple-canvases-in-html5/20918871#20918871
   return (
-    <div>
-      <div className="flex justify-between">
+    <div className="grid grid-cols-3 gap-8">
+      <div className="flex flex-col justify-evenly">
         <button className="bg-yellow-500 text-white py-2 px-4 rounded" onClick={handleClear}>Clear</button>
         <button className="bg-yellow-500 text-white py-2 px-4 rounded" onClick={() => {handleChangeTool("foreground")}}>Foreground</button>
         <button className="bg-yellow-500 text-white py-2 px-4 rounded" onClick={() => {handleChangeTool("background")}}>Background</button>
       </div>
-      <div id="stack-container" className="relative">
+      <div id="stack-container" className="relative col-span-2">
         <canvas id={id} ref={canvas} width={width} height={height} />
         <canvas 
           id="canvas-draw-layer"
