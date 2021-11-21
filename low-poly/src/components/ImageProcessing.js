@@ -27,7 +27,7 @@ export const removeBackground = async (cv, input, drawLayer, output, callback) =
   await callback()
 }
 
-export const hexagonify = async (cv, input, thresh, output) => {
+export const hexagonify = async (cv, blurKernal, input, thresh, output) => {
   if (!cv) return;
 
   const src = cv.imread(input);
@@ -38,7 +38,7 @@ export const hexagonify = async (cv, input, thresh, output) => {
   cv.cvtColor(srcCopy, srcCopy, cv.COLOR_RGBA2GRAY)
   cv.threshold(srcCopy, srcCopy, 5, 255, cv.THRESH_BINARY);
 
-  let kernal = new cv.Size(3, 3);
+  let kernal = new cv.Size(blurKernal, blurKernal);
   cv.GaussianBlur(srcCopy, srcCopy, kernal, 0, 0, cv.BORDER_DEFAULT);
 
   cv.imshow(thresh, srcCopy);

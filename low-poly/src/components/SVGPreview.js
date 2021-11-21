@@ -4,6 +4,12 @@ import InfoTooltip from './InfoTooltip'
 
 const SVGPreview = () => {
 
+  // const downloadSVG = () => {
+  //   const svg = svgRef.current.innerHTML;
+  //   const blob = new Blob([svg], { type: "image/svg+xml" });
+  //   downloadBlob(blob, `myimage.svg`);
+  // };
+
   return (
     <Card>
       <div className="flex flex-col">

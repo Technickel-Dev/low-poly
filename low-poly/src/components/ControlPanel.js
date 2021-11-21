@@ -10,13 +10,13 @@ import SubmitButton from "./SubmitButton"
 const App = () => {
   const { handleSubmit, register } = useForm();
 
-  const {lineColor, backgroundColor, strokeWidth} = useHexagonStore(state => state.controlData)
+  const {lineColor, backgroundColor, strokeWidth, blurKernal, erosionKernal} = useHexagonStore(state => state.controlData)
   const setControlData = useHexagonStore(state => state.setControlData)
   const setFileURL = useHexagonStore(state => state.setFileURL)
   const { loaded: isOpenCVLoaded } = useOpenCv()
 
   const onSubmit = (data) => {
-    let integerFields = ["strokeWidth"]
+    let integerFields = ["strokeWidth", "blurKernal"]
 
     // Store integer fields as integers rather than strings
     integerFields.forEach((field) => {
@@ -34,14 +34,18 @@ const App = () => {
     <div className="col-span-2">
       <Card>
         {isOpenCVLoaded ?
-          <form className="flex-grow flex flex-col w-100" onSubmit={handleSubmit(onSubmit)}>
-              <input type="file" id="file-input" className="mb-4" name="file" onChange={onFileChange} />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-wrap justify-evenly">
               <InputText label="Line Color" id="lineColor" defaultValue={lineColor} register={register} />
               <InputText label="Background Color" id="backgroundColor" defaultValue={backgroundColor} register={register} />
               <InputNumber label="Stroke Width" id="strokeWidth" defaultValue={strokeWidth} register={register} />
-            <div className="flex justify-center mt-2">
+              <InputNumber label="Blur Kernal" id="blurKernal" defaultValue={blurKernal} register={register} />
+              <InputNumber label="Erosion Kernal" id="erosionKernal" defaultValue={erosionKernal} register={register} />
+            </div>
+            <div className="flex justify-center my-2">
               <SubmitButton />
             </div>
+            <input type="file" id="file-input" className="mb-4" name="file" onChange={onFileChange} />
           </form> :
           <Loading />
         }

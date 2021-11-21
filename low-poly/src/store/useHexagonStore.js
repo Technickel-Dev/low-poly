@@ -6,7 +6,9 @@ const store = (set) => ({
   controlData: { 
     lineColor: '#000000',
     backgroundColor: '#FFFFFF',
-    strokeWidth: 5
+    strokeWidth: 5,
+    blurKernal: 3,
+    erosionKernal: 3
   },
   dataPath: '125 125 125 225 225 225 225 125',
   fileURL: null,

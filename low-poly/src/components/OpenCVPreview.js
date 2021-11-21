@@ -7,6 +7,7 @@ import InfoTooltip from './InfoTooltip'
 import { useEffect } from 'react'
 
 const OpenCVPreview = () => {
+  const { blurKernal } = useHexagonStore(state => state.controlData)
   const setDataPath = useHexagonStore(state => state.setDataPath)
   const { cv } = useOpenCv()
 
@@ -37,7 +38,7 @@ const OpenCVPreview = () => {
             </div>
             <DrawableCanvas id={"canvas-input"} width={350} height={350} drawCallback={() => { 
               removeBackground(cv, 'canvas-input', 'canvas-draw-layer', 'canvas-removed-background', () => { 
-                hexagonify(cv, 'canvas-removed-background', 'canvas-thresh', 'canvas-output').then((dataPath) => {
+                hexagonify(cv, blurKernal, 'canvas-removed-background', 'canvas-thresh', 'canvas-output').then((dataPath) => {
                   setDataPath(dataPath)
                 })
               })
