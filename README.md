@@ -9,10 +9,10 @@ Low Poly is a React based website that takes advantage of WASM to generate digit
 ![Low Poly snapshot](public/readme/website_snapshot.png)
 
 ## Table of Contents
-1. [Usage](##Usage)
-2. [Demo](##Demo)
-3. [Installation](##Installation)
-4. [Support](##Support)
+1. [Usage](#Usage)
+2. [Demo](#Demo)
+3. [Installation](#Installation)
+4. [Support](#Support)
 
 ## Usage
 1. Prepare the configurations for your image manipulation and submit them
