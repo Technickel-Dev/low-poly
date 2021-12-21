@@ -8,13 +8,13 @@ Low Poly is a React based website that takes advantage of WASM to generate digit
 
 ![Low Poly snapshot](public/readme/website_snapshot.png)
 
-## Table of Contents
+## 📋 Table of Contents
 1. [Usage](#Usage)
 2. [Demo](#Demo)
 3. [Installation](#Installation)
 4. [Support](#Support)
 
-## Usage
+## ✨ Usage
 1. Prepare the configurations for your image manipulation and submit them
 2. Upload an image file
 3. Aid the background removal using the foreground and background color strokes on the canvas
@@ -22,9 +22,9 @@ Low Poly is a React based website that takes advantage of WASM to generate digit
 5. Bask in the glory of your brand new low poly inspired art
 6. Download your awesome art in SVG format to be used wherever you want!
 
-## Demo
+## ▶️ Demo
 You don't need to run this repo yourself to take advantage of Low Poly: [Try it here](https://lowpoly.tripleresolution.com/)
-## Installation
+## 🛠️ Installation
 - Download the required packages:
 ```
 yarn install
@@ -38,7 +38,7 @@ yarn start
 ```
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-## Support
+## 🙏 Support
 You think the world needs more of my creations? Want to help motivate me more? Check out the my link below.
 
 <a href="https://www.buymeacoffee.com/pIvCSjDLo" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
