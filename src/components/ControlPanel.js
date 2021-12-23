@@ -6,6 +6,7 @@ import InputText from "./InputText"
 import Loading from "./Loading"
 import useHexagonStore from "../store/useHexagonStore"
 import SubmitButton from "./SubmitButton"
+import fillBlack from "../utilities/fillBlack";
 
 const App = () => {
   const { handleSubmit, register } = useForm();
@@ -27,6 +28,7 @@ const App = () => {
   }
 
   const onFileChange = (e) => {
+    fillBlack()
     setFileURL(URL.createObjectURL(e.target.files[0]))
   }
 

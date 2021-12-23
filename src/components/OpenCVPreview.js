@@ -5,6 +5,7 @@ import { hexagonify, removeBackground } from './ImageProcessing'
 import DrawableCanvas from './DrawableCanvas'
 import InfoTooltip from './InfoTooltip'
 import { useEffect } from 'react'
+import fillBlack from '../utilities/fillBlack'
 
 const OpenCVPreview = () => {
   const { blurKernal } = useHexagonStore(state => state.controlData)
@@ -13,13 +14,7 @@ const OpenCVPreview = () => {
 
   // Fill all canvases with black
   useEffect(() => {
-    let canvases = ["canvas-input", "canvas-removed-background", "canvas-thresh", "canvas-output"]
-    canvases.forEach((currentCanvas) => {
-      let canvas = document.querySelector('#' + currentCanvas)
-      let context = canvas.getContext('2d');
-      context.fillStyle = "#000000";
-      context.fillRect(0, 0, canvas.width, canvas.height);
-    });
+    fillBlack();
   }, [])
   
   return (
