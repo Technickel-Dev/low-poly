@@ -19,6 +19,8 @@ const DrawableCanvas = ({ id, width, height, drawCallback }) => {
 
     // Draw the image
     const context = canvas.getContext('2d');
+    // Clear the previous image
+    context.fillRect(0, 0, canvas.width, canvas.height);
     context.drawImage(img, x, y, img.width * scale, img.height * scale);
   }
 
