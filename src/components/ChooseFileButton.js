@@ -4,7 +4,7 @@ const ChooseFileButton = ({ text = "Choose File", onChange, filename }) => {
       <input hidden type="file" id="choose-file-btn" onChange={onChange} />
       <label
         htmlFor="choose-file-btn"
-        className="bg-red-500 text-white py-2 px-4 mr-2 rounded"
+        className="bg-red-500 text-white py-2 px-4 mr-2 ml-5 rounded"
         style={{ cursor: "pointer" }}
       >
         {text}
