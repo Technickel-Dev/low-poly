@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react"
-import useHexagonStore from "../store/useHexagonStore"
+import { useEffect, useRef, useState } from "react";
+import useHexagonStore from "../store/useHexagonStore";
 
 const DrawableCanvas = ({ id, width, height, drawCallback }) => {
   const canvas = useRef();
   const drawLayerCanvas = useRef();
-  const fileURL = useHexagonStore(state => state.fileURL)
+  const fileURL = useHexagonStore((state) => state.fileURL);
 
   const [isDrawing, setIsDrawing] = useState(false);
   const [color, setColor] = useState("green");
@@ -12,71 +12,76 @@ const DrawableCanvas = ({ id, width, height, drawCallback }) => {
   const scaleToFit = (canvas, img) => {
     // Get the scale factor
     var scale = Math.min(canvas.width / img.width, canvas.height / img.height);
-    
+
     // Get the top left position of the image
-    var x = (canvas.width / 2) - (img.width / 2) * scale;
-    var y = (canvas.height / 2) - (img.height / 2) * scale;
+    var x = canvas.width / 2 - (img.width / 2) * scale;
+    var y = canvas.height / 2 - (img.height / 2) * scale;
 
     // Draw the image
-    const context = canvas.getContext('2d');
+    const context = canvas.getContext("2d");
     context.drawImage(img, x, y, img.width * scale, img.height * scale);
-  }
+  };
 
   const getMousePosition = (e) => {
     let box = drawLayerCanvas.current.getBoundingClientRect();
     return { x: e.clientX - box.left, y: e.clientY - box.top };
-  }
+  };
 
   const handleMouseDown = (e) => {
-    const context = drawLayerCanvas.current.getContext('2d');
+    const context = drawLayerCanvas.current.getContext("2d");
     context.lineWidth = 5;
     context.lineJoin = context.lineCap = "round";
     context.strokeStyle = color;
-    
-    setIsDrawing(true)
+
+    setIsDrawing(true);
     context.beginPath();
 
     let mousePos = getMousePosition(e);
     context.moveTo(mousePos.x, mousePos.y);
-  }
+  };
 
   const handleMouseMove = (e) => {
     if (isDrawing) {
-      const context = drawLayerCanvas.current.getContext('2d');
+      const context = drawLayerCanvas.current.getContext("2d");
       let mousePos = getMousePosition(e);
       context.lineTo(mousePos.x, mousePos.y);
       context.stroke();
     }
-  }
+  };
 
   const handleMouseUp = (e) => {
-    setIsDrawing(false)
-    drawCallback()
-  }
+    setIsDrawing(false);
+    drawCallback();
+  };
 
   const handleClear = () => {
-    const context = drawLayerCanvas.current.getContext('2d');
-    context.clearRect(0, 0, drawLayerCanvas.current.width, drawLayerCanvas.current.height);
-  }
+    const context = drawLayerCanvas.current.getContext("2d");
+    context.clearRect(
+      0,
+      0,
+      drawLayerCanvas.current.width,
+      drawLayerCanvas.current.height
+    );
+  };
 
   const handleChangeTool = (mode) => {
-    if(mode === "foreground") {
-      setColor('green')
+    if (mode === "foreground") {
+      setColor("green");
     } else {
-      setColor('red')
+      setColor("red");
     }
-  }
-  
-  useEffect(() => {    
-    if(fileURL) {
+  };
+
+  useEffect(() => {
+    if (fileURL) {
       // Load image into canvas
       var img = new Image();
-      img.src = fileURL
+      img.src = fileURL;
 
       img.onload = (e) => {
-        scaleToFit(canvas.current, e.target)
-        drawCallback()
-      }
+        scaleToFit(canvas.current, e.target);
+        drawCallback();
+      };
     }
   }, [fileURL, drawCallback]);
 
@@ -85,13 +90,32 @@ const DrawableCanvas = ({ id, width, height, drawCallback }) => {
   return (
     <div className="grid grid-cols-3 gap-8">
       <div className="flex flex-col justify-evenly">
-        <button className="bg-yellow-500 text-white py-2 px-4 rounded" onClick={handleClear}>Clear</button>
-        <button className="bg-yellow-500 text-white py-2 px-4 rounded" onClick={() => {handleChangeTool("foreground")}}>Foreground</button>
-        <button className="bg-yellow-500 text-white py-2 px-4 rounded" onClick={() => {handleChangeTool("background")}}>Background</button>
+        <button
+          className="bg-yellow-500 text-white py-2 px-4 rounded"
+          onClick={handleClear}
+        >
+          Clear
+        </button>
+        <button
+          className="bg-yellow-500 text-white py-2 px-4 rounded"
+          onClick={() => {
+            handleChangeTool("foreground");
+          }}
+        >
+          Foreground
+        </button>
+        <button
+          className="bg-yellow-500 text-white py-2 px-4 rounded"
+          onClick={() => {
+            handleChangeTool("background");
+          }}
+        >
+          Background
+        </button>
       </div>
       <div id="stack-container" className="relative col-span-2">
         <canvas id={id} ref={canvas} width={width} height={height} />
-        <canvas 
+        <canvas
           id="canvas-draw-layer"
           className="absolute top-0 left-0"
           ref={drawLayerCanvas}
@@ -104,6 +128,6 @@ const DrawableCanvas = ({ id, width, height, drawCallback }) => {
       </div>
     </div>
   );
-}
- 
+};
+
 export default DrawableCanvas;
