@@ -69,7 +69,7 @@ const OpenCVPreview = () => {
                     });
                   }
                 );
-              }, 1200)}
+              }, 1500)}
             />
           </div>
         </Card>
