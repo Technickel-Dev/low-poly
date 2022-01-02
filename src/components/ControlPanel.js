@@ -44,21 +44,18 @@ const App = () => {
         {isOpenCVLoaded ? (
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-wrap justify-evenly">
-              {/* <input type="color" defaultValue="#ffffff" /> */}
               <InputColor
                 label="Line Color"
                 id="lineColor"
-                defaultValue="lineColor"
+                defaultValue={lineColor}
                 register={register}
               />
-
               <InputColor
                 label="Background Color"
                 id="backgroundColor"
                 defaultValue={backgroundColor}
                 register={register}
               />
-
               <InputNumber
                 label="Stroke Width"
                 id="strokeWidth"

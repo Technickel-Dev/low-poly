@@ -1,4 +1,4 @@
-const InputNumber = ({ label, id, defaultValue, register }) => {
+const InputColor = ({ label, id, defaultValue, register }) => {
   return (
     <div className="mb-4 mr-2">
       <label
@@ -10,6 +10,7 @@ const InputNumber = ({ label, id, defaultValue, register }) => {
       <input
         type="color"
         defaultValue={defaultValue}
+        id={id}
         {...register(id)}
         className="shadow border rounded w-40 py-2 px-2 h-10"
       />
@@ -17,4 +18,4 @@ const InputNumber = ({ label, id, defaultValue, register }) => {
   );
 };
 
-export default InputNumber;
+export default InputColor;
