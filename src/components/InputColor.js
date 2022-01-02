@@ -9,9 +9,9 @@ const InputNumber = ({ label, id, defaultValue, register }) => {
       </label>
       <input
         type="color"
-        // value={defaultValue}
+        defaultValue={defaultValue}
         {...register(id)}
-        className="shadow border rounded w-full py-1 px-1"
+        className="shadow border rounded w-40 py-1 px-1"
       />
     </div>
   );

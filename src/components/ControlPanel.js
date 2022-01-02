@@ -2,7 +2,6 @@ import { useOpenCv } from "opencv-react";
 import { useForm } from "react-hook-form";
 import Card from "./Card";
 import InputNumber from "./InputNumber";
-import InputText from "./InputText";
 import InputColor from "./InputColor";
 import Loading from "./Loading";
 import useHexagonStore from "../store/useHexagonStore";
@@ -52,24 +51,14 @@ const App = () => {
                 defaultValue="lineColor"
                 register={register}
               />
-              {/* <InputText
-                label="Line Color"
-                id="lineColor"
-                defaultValue={lineColor}
-                register={register}
-              /> */}
+
               <InputColor
                 label="Background Color"
                 id="backgroundColor"
                 defaultValue={backgroundColor}
                 register={register}
               />
-              {/* <InputText
-                label="Background Color"
-                id="backgroundColor"
-                defaultValue={backgroundColor}
-                register={register}
-              /> */}
+
               <InputNumber
                 label="Stroke Width"
                 id="strokeWidth"
