@@ -11,7 +11,7 @@ const InputNumber = ({ label, id, defaultValue, register }) => {
         type="color"
         defaultValue={defaultValue}
         {...register(id)}
-        className="shadow border rounded w-40 py-1 px-1"
+        className="shadow border rounded w-40 py-2 px-2 h-10"
       />
     </div>
   );
