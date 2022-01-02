@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import Card from "./Card";
 import InputNumber from "./InputNumber";
 import InputText from "./InputText";
+import InputColor from "./InputColor";
 import Loading from "./Loading";
 import useHexagonStore from "../store/useHexagonStore";
 import SubmitButton from "./SubmitButton";
@@ -44,18 +45,31 @@ const App = () => {
         {isOpenCVLoaded ? (
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-wrap justify-evenly">
-              <InputText
+              {/* <input type="color" defaultValue="#ffffff" /> */}
+              <InputColor
+                label="Line Color"
+                id="lineColor"
+                defaultValue="lineColor"
+                register={register}
+              />
+              {/* <InputText
                 label="Line Color"
                 id="lineColor"
                 defaultValue={lineColor}
                 register={register}
-              />
-              <InputText
+              /> */}
+              <InputColor
                 label="Background Color"
                 id="backgroundColor"
                 defaultValue={backgroundColor}
                 register={register}
               />
+              {/* <InputText
+                label="Background Color"
+                id="backgroundColor"
+                defaultValue={backgroundColor}
+                register={register}
+              /> */}
               <InputNumber
                 label="Stroke Width"
                 id="strokeWidth"
