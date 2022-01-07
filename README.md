@@ -41,7 +41,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ## 🙏 Support
 You think the world needs more of my creations? Want to help motivate me more? Check out the my link below.
 
-<a href="https://www.buymeacoffee.com/pIvCSjDLo" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+[![BuyMeACoffee Badge](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/pIvCSjDLo)
 
 P.S. Your support doesn't have to be monetary, I also accept praise on any of my social media channels :)
 
