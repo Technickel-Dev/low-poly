@@ -38,7 +38,7 @@ yarn start
 ```
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-## 🙏 Support
+## 🤑 Support
 You think the world needs more of my creations? Want to help motivate me more? Check out the my link below.
 
 [![GitHub Sponsor Badge](https://img.shields.io/badge/Sponsor-30363D?style=flat&logo=GitHub-Sponsors)](https://github.com/sponsors/Technickel-Dev)
