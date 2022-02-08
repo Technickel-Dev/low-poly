@@ -3,6 +3,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/2db16f75-0702-4942-8c48-01bf1acc9d8b/deploy-status)](https://app.netlify.com/sites/low-poly/deploys)
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Tailwindcss](https://img.shields.io/badge/Tailwindcss-CSS--Framework-%2338B2AC?logo=tailwindcss)](https://tailwindcss.com)
 
 Low Poly is a React based website that takes advantage of WASM to generate digital art inspired by low poly art styles.
 
