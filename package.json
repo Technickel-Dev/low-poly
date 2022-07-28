@@ -3,19 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "immer": "^9.0.7",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.3.0",
+    "immer": "^9.0.15",
     "opencv-react": "^0.0.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^7.22.2",
-    "react-icons": "^4.3.1",
-    "react-scripts": "5.0.0",
+    "react-hook-form": "^7.33.1",
+    "react-icons": "^4.4.0",
+    "react-scripts": "5.0.1",
     "react-tooltip": "^4.2.21",
-    "sanitize-html": "^2.6.1",
-    "zustand": "^3.6.7"
+    "sanitize-html": "^2.7.1",
+    "zustand": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -42,8 +42,8 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.0",
-    "postcss": "^8.4.5",
-    "tailwindcss": "^3.0.7"
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.6"
   }
 }
