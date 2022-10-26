@@ -26,21 +26,18 @@ Low Poly is a React based website that takes advantage of WASM to generate digit
 ## ▶️ Demo
 You don't need to run this repo yourself to take advantage of Low Poly: [Try it here](https://lowpoly.tripleresolution.com/)
 ## 🛠️ Installation
-- Download the required packages:
+- Download the required dependency packages needed for the app:
 ```
 yarn install
 ```
-This will install all dependencies needed to run the app.
 
-
-- Run the development server:
+- Run the app using the development mode:
 ```
 yarn start
 ```
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ## 🤑 Support Me!
-You think the world needs more of my creations? Want to help motivate me more? Click the "Donation" image below to get taken to a page with all the ways you can support or donate to me!
+You think the world needs more of my creations? Want to help motivate me more? Click the "Support" image below to get taken to a page with all the ways you can support or donate to me!
 
 [<img width="160" alt="donations_image_button" src="https://user-images.githubusercontent.com/22779812/196099319-422ee2a3-fc5c-4d94-9e21-ecf500232578.png">](https://technickel.dev/support)
 
