@@ -39,6 +39,6 @@ yarn start
 ## 🤑 Support Me!
 You think the world needs more of my creations? Want to help motivate me more? Click the "Support" image below to get taken to a page with all the ways you can support or donate to me!
 
-[<img width="160" alt="donations_image_button" src="https://user-images.githubusercontent.com/22779812/196099319-422ee2a3-fc5c-4d94-9e21-ecf500232578.png">](https://technickel.dev/support)
+[<img width="160" alt="support_image_button" src="https://user-images.githubusercontent.com/22779812/197946915-1d1ecf16-6c2a-439b-ae1e-e9cebca50d0b.png">](https://technickel.dev/support)
 
 P.S. Your support doesn't have to be monetary, I also accept praise on any of my social media channels 😃
