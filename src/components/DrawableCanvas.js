@@ -107,7 +107,7 @@ const DrawableCanvas = ({ id, width, height, drawCallback }) => {
           Foreground
         </button>
         <button
-          className={"bg-yellow-500 text-white py-2 px-4 rounded " + (drawTool === "background" ? "bg-yellow-600" : "bg-yellow-500")}
+          className={"text-white py-2 px-4 rounded " + (drawTool === "background" ? "bg-yellow-600" : "bg-yellow-500")}
           onClick={() => {
             handleChangeTool("background");
             setDrawTool("background")
