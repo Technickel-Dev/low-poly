@@ -8,6 +8,7 @@ const DrawableCanvas = ({ id, width, height, drawCallback }) => {
 
   const [isDrawing, setIsDrawing] = useState(false);
   const [color, setColor] = useState("green");
+  const [drawTool, setDrawTool] = useState("");
 
   const scaleToFit = (canvas, img) => {
     // Get the scale factor
@@ -97,17 +98,19 @@ const DrawableCanvas = ({ id, width, height, drawCallback }) => {
           Clear
         </button>
         <button
-          className="bg-yellow-500 text-white py-2 px-4 rounded"
+          className={" text-white py-2 px-4 rounded " + (drawTool === "foreground" ? "bg-yellow-600" : "bg-yellow-500")}
           onClick={() => {
             handleChangeTool("foreground");
+            setDrawTool("foreground")
           }}
         >
           Foreground
         </button>
         <button
-          className="bg-yellow-500 text-white py-2 px-4 rounded"
+          className={"bg-yellow-500 text-white py-2 px-4 rounded " + (drawTool === "background" ? "bg-yellow-600" : "bg-yellow-500")}
           onClick={() => {
             handleChangeTool("background");
+            setDrawTool("background")
           }}
         >
           Background
