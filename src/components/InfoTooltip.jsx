@@ -5,17 +5,15 @@ import sanitizeHtml from "sanitize-html";
 const InfoTooltip = ({ id, text }) => {
   return (
     <>
-      <FaInfoCircle className="ml-2 text-blue-400" data-tip data-for={id} />
+      <FaInfoCircle className="ml-2 text-blue-400" data-tooltip-id={id} />
       <Tooltip
         id={id}
-        place="bottom"
-        type="info"
-        effect="solid"
-        html={true}
+        data-tooltip-place="bottom"
+        data-tooltip-type="info"
+        data-tooltip-effect="solid"
         className="max-w-md"
-      >
-        {sanitizeHtml(text)}
-      </Tooltip>
+        html={sanitizeHtml(text)}
+      ></Tooltip>
     </>
   );
 };
